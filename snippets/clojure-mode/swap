@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: swap
+# key: swap
+# --
+(swap! $1-atom (fn [$1]
+                   ($0)))

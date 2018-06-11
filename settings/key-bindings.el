@@ -67,6 +67,7 @@
 (global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
 ;; Delete all blank lines
 (key-chord-define-global "DD" (λ (flush-lines "^$" (point-min) (point-max))))
+(key-chord-define-global "ZZ" 'delete-line)
 
 ;; M-i for back-to-indentation
 (global-set-key (kbd "M-i") 'back-to-indentation)
@@ -199,7 +200,7 @@
 (key-chord-define-global "fg" 'jump-char-forward)
 (key-chord-define-global "df" 'jump-char-backward)
 (key-chord-define-global ";;" "\C-e;")
-(key-chord-define-global ",." "{};\C-b\C-b")
+(key-chord-define-global ",." "{}\C-b")
 (key-chord-define-global ".-" "[]\C-b")
 (key-chord-define-global "\'\'" "''\C-b")
 (key-chord-define-global "\"\"" "\"\"\C-b")
@@ -299,7 +300,7 @@
 (global-set-key (kbd "C-x C-y") 'browse-kill-ring)
 
 ;; Buffer file functions
-(global-set-key (kbd "C-x t") 'touch-buffer-file)
+;; (global-set-key (kbd "C-x t") 'touch-buffer-file)
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 ;; (global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
 
@@ -391,6 +392,14 @@
 
 ;; Kill current buffer
 (global-set-key (kbd "H-k") (λ (kill-buffer (buffer-name))))
+
+;; Open terminal
+(global-set-key (kbd "C-x t") (λ (shell-command "open -a /Applications/Utilities/Terminal.app .")))
+
+;; Flycheck
+(define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)
+(define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
+(define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)
 
 (add-hook
  'dired-mode-hook

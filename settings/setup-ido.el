@@ -60,7 +60,9 @@
 (ido-at-point-mode)
 
 ;; Use ido everywhere
-(require 'ido-ubiquitous)
+;; (require 'ido-ubiquitous)
+(ido-everywhere 1)
+(require 'ido-completing-read+)
 (ido-ubiquitous-mode 1)
 
 ;; Fix ido-ubiquitous for newer packages

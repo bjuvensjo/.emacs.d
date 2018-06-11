@@ -1,6 +1,8 @@
 # -*- mode: snippet -*-
 # name: test
-# key: tt
+# key: test
 # --
-(deftest $1
-  (is (= $0)))
+{:test (fn []
+         (is (= $1
+                 ($2))
+           $0))}

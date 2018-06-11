@@ -40,3 +40,4 @@ up before you execute another command."
   (flycheck-buffer-automatically 'idle-change))
 
 (provide 'setup-flycheck)
+

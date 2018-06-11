@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tng
+# key: tng
+# --
+(testing "$1"
+  (is $0))

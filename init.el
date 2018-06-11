@@ -45,19 +45,21 @@
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
-   '(;; gist    
-     ;; whitespace-cleanup-mode
+   '(;; whitespace-cleanup-mode
      ace-jump-mode
+     ;; anaconda-mode
      browse-kill-ring
      change-inner
      cider
-     clojure-mode
-     clojure-mode-extra-font-locking
+     clj-refactor
+     clojure-mode     
+     ;; clojure-mode-extra-font-locking
      company
      dash
      diminish
      dired-details
      elisp-slime-nav
+     elpy
      elmacro
      expand-region
      f
@@ -67,13 +69,15 @@
      flycheck
      flycheck-clojure
      flycheck-pos-tip
-     groovy-mode
+     gist
+     go-mode
      groovy-mode
      guide-key
      htmlize
      hydra
      ido-at-point
-     ido-ubiquitous
+     ;; ido-ubiquitous
+     ido-completing-read+
      ido-vertical-mode
      iy-go-to-char
      js2-mode
@@ -98,13 +102,35 @@
      yaml-mode
      yasnippet
      zencoding-mode
-     zoom-frm)))
+     ;;zoom-frm
+)))
 
 (condition-case nil
     (init--install-packages)
   (error
    (package-refresh-contents)
    (init--install-packages)))
+
+;; Functions (load all files in defuns-dir)
+(setq defuns-dir (expand-file-name "defuns" emacs.d-directory))
+(dolist (file (directory-files defuns-dir t "\\w+"))
+  (when (file-regular-p file)
+    (load file)))
+
+
+;; Functions (load all el-files in wiki-defuns-dir)
+(setq wiki-defuns-dir (expand-file-name "wiki-defuns" emacs.d-directory))
+(load (expand-file-name "frame-fns.el" wiki-defuns-dir))
+(dolist (file (directory-files wiki-defuns-dir t "\\w+.el"))
+  (when (file-regular-p file)
+    (load file)))
+
+
+;; Functions (load all el-files in my-defuns-dir)
+(setq my-defuns-dir (expand-file-name "my-defuns" emacs.d-directory))
+(dolist (file (directory-files my-defuns-dir t "\\w+.el"))
+  (when (file-regular-p file)
+    (load file)))
 
 ;; Set up appearance early
 (require 'appearance)
@@ -138,6 +164,8 @@
 (require 'key-chord)
 (key-chord-mode 1)
 (require 'setup-paredit)
+(require 'setup-elpy)
+;; (require 'setup-anaconda)
 ;; (require 'setup-perspective)
 (require 'setup-restclient)
 (require 'setup-smartparens)
@@ -168,18 +196,6 @@
 ;; (require 'highlight-escape-sequences)
 ;; (hes-mode)
 ;; (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
-
-;; Functions (load all files in defuns-dir)
-(setq defuns-dir (expand-file-name "defuns" emacs.d-directory))
-(dolist (file (directory-files defuns-dir t "\\w+"))
-  (when (file-regular-p file)
-    (load file)))
-
-;; Functions (load all el-files in my-defuns-dir)
-(setq defuns-dir (expand-file-name "my-defuns" emacs.d-directory))
-(dolist (file (directory-files defuns-dir t "\\w+.el"))
-  (when (file-regular-p file)
-    (load file)))
 
 (require 'expand-region)
 (require 'multiple-cursors)
@@ -273,3 +289,6 @@
 
 ;; indentation
 (setq c-basic-offset 4)
+
+;; window numbering
+(window-numbering-mode)
