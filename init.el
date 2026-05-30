@@ -47,7 +47,7 @@
 (defun init--install-packages ()
   (packages-install
    '(;; whitespace-cleanup-mode
-      avy
+     avy
      browse-kill-ring
      change-inner
      company
@@ -58,8 +58,6 @@
      f
      flx
      flx-ido
-     flycheck
-     flycheck-pos-tip
      hydra
      ido-at-point
      ido-completing-read+
@@ -68,11 +66,8 @@
      move-text
      multiple-cursors
      phi-search
-     popup
      s
-     smartparens
      smex
-     smooth-scrolling
      undo-tree
      visual-regexp
      wgrep
@@ -112,9 +107,9 @@
 (require 'sane-defaults)
 
 ;; Setup environment variables from the user's shell.
-(when is-mac
-  (require-package 'exec-path-from-shell)
-  (exec-path-from-shell-initialize))
+;; (when is-mac
+;;   (require-package 'exec-path-from-shell)
+;;   (exec-path-from-shell-initialize))
 
 (setq shell-command-switch "-ic")
 
@@ -124,23 +119,16 @@
 (require 'setup-hippie)
 (require 'key-chord)
 (key-chord-mode 1)
-(require 'setup-flycheck)
-(require 'setup-smartparens)
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
 
-;; Language specific setup files
-(eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
-
 ;; Load stuff on demand
 (autoload 'auto-complete-mode "auto-complete" nil t)
-(eval-after-load 'flycheck '(require 'setup-flycheck))
 
 (require 'expand-region)
 (require 'multiple-cursors)
 (require 'visual-regexp)
-(require 'wgrep)
 (require 'change-inner)
 
 ;; ;; Don't use expand-region fast keys
@@ -178,9 +166,9 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t) (eldoc-mode 1)))
 
 ;; ;; Emacs server
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+;; (require 'server)
+;; (unless (server-running-p)
+;;   (server-start))
 
 ;; ;; Run at full power please
 (put 'downcase-region 'disabled nil)

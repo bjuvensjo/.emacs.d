@@ -30,6 +30,7 @@
 (setq locale-coding-system 'utf-8) ; pretty
 (set-terminal-coding-system 'utf-8) ; pretty
 (set-keyboard-coding-system 'utf-8) ; pretty
+
 (set-selection-coding-system 'utf-8) ; please
 (prefer-coding-system 'utf-8) ; with sugar on top
 
@@ -76,7 +77,7 @@
 ;; (setq-default truncate-lines t)
 
 ;; Keep cursor away from edges when scrolling up/down
-(require 'smooth-scrolling)
+;; (require 'smooth-scrolling)
 
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)

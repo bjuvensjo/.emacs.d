@@ -35,11 +35,10 @@
      ("melpa" . "http://melpa.org/packages/")
      ("melpa-stable" . "http://stable.melpa.org/packages/")))
  '(package-selected-packages
-   '(avy browse-kill-ring change-inner company deflate diminish elisp-slime-nav
-         exec-path-from-shell f flx-ido flycheck-pos-tip highlight-indentation
-         hydra ido-at-point ido-completing-read+ ido-vertical-mode key-chord
-         move-text multiple-cursors phi-search popup sesman smartparens smex
-         smooth-scrolling spinner undo-tree visual-regexp wgrep window-numbering))
+   '(avy browse-kill-ring change-inner company diminish elisp-slime-nav f flx-ido
+         flycheck highlight-indentation hydra ido-at-point ido-completing-read+
+         ido-vertical-mode key-chord move-text multiple-cursors phi-search
+         pos-tip smex undo-tree visual-regexp wgrep window-numbering))
  '(safe-local-variable-values
    '((eval font-lock-add-keywords nil
            '(("defexamples\\|def-example-group\\| => "

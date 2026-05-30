@@ -32,11 +32,6 @@
 ;; Expand region (increases selected region by semantic units)
 (global-set-key (if is-mac (kbd "C-+") (kbd "C-'")) 'er/expand-region)
 
-;; Experimental multiple-cursors
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C-S-c C-e") 'mc/edit-ends-of-lines)
-(global-set-key (kbd "C-S-c C-a") 'mc/edit-beginnings-of-lines)
-
 ;; Mark additional regions matching current region
 (global-set-key (kbd "M-ä") 'mc/mark-all-dwim)
 (global-set-key (kbd "C-å") 'mc/mark-previous-like-this)
@@ -47,7 +42,6 @@
 ;; Set anchor to start rectangular-region-mode
 (global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
 
-;; Replace rectangle-text with inline-string-rectangle
 (global-set-key (kbd "C-x r t") 'mc/edit-lines)
 
 ;; ;; Quickly jump in document with avy
@@ -55,7 +49,6 @@
 (key-chord-define-global "SS" 'avy-pop-mark)
 (global-set-key (kbd "C-ö") 'avy-goto-char)
 (global-set-key (kbd "C-Ö") 'avy-pop-mark)
-
 
 ;; ;; Perform general cleanup
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
@@ -260,9 +253,6 @@
 ;; Find files by name and display results in dired
 (global-set-key (kbd "M-s-f") 'find-name-dired)
 
-;; ;; Find file in project
-(global-set-key (kbd "C-x o") 'find-file-in-project)
-
 ;; phi-search
 (global-set-key (kbd "C-s") 'phi-search)
 (global-set-key (kbd "C-r") 'phi-search-backward)
@@ -291,11 +281,6 @@
 
 ;; Open terminal
 (global-set-key (kbd "C-x t") (λ (shell-command "open -a /Applications/kitty.app/Contents/MacOS/kitty .")))
-
-;; Flycheck
-(define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)
-(define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
-(define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)
 
 (add-hook
  'dired-mode-hook
