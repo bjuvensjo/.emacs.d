@@ -57,9 +57,12 @@
 ;; Replace rectangle-text with inline-string-rectangle
 (global-set-key (kbd "C-x r t") 'mc/edit-lines)
 
-;; ;; Quickly jump in document with ace-jump-mode
-(define-key global-map (kbd "C-ö") 'ace-jump-mode)
-(define-key global-map (kbd "C-Ö") 'ace-jump-mode-pop-mark)
+;; ;; Quickly jump in document with avy
+(key-chord-define-global "ss" 'avy-goto-char)
+(key-chord-define-global "SS" 'avy-pop-mark)
+(global-set-key (kbd "C-ö") 'avy-goto-char)
+(global-set-key (kbd "C-Ö") 'avy-pop-mark)
+
 
 ;; ;; Perform general cleanup
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
@@ -97,10 +100,31 @@
 
 ;; Change word separators
 (global-unset-key (kbd "C-x +")) ;; used to be balance-windows
-(global-set-key (kbd "C-x + -") (λ (replace-region-by 's-dashed-words)))
-(global-set-key (kbd "C-x + _") (λ (replace-region-by 's-snake-case)))
-(global-set-key (kbd "C-x + c") (λ (replace-region-by 's-lower-camel-case)))
-(global-set-key (kbd "C-x + C") (λ (replace-region-by 's-upper-camel-case)))
+;; (global-set-key (kbd "C-x -") (λ (replace-region-by 's-dashed-words)))
+(global-set-key (kbd "C-x _") (λ (replace-region-by 's-snake-case)))
+(global-set-key (kbd "C-x c") (λ (replace-region-by 's-lower-camel-case)))
+(global-set-key (kbd "C-x C") (λ (replace-region-by 's-upper-camel-case)))
+(defun my/underscores-to-dots-but-last-line (line)
+  (if (string-match "_[^_]*\\'" line)
+      (let ((i (match-beginning 0)))
+        (concat
+         (replace-regexp-in-string "_" "." (substring line 0 i) t t)
+         (substring line i)))
+    line))
+
+(defun my/underscores-to-dots-but-last-per-line (s)
+  (let* ((ends-with-newline (string-suffix-p "\n" s))
+         (lines (split-string s "\n" nil))
+         (result (mapconcat #'my/underscores-to-dots-but-last-line lines "\n")))
+    (if ends-with-newline
+        (concat result "\n")
+      result)))
+
+(global-set-key (kbd "C-x .")
+                (lambda ()
+                  (interactive)
+                  (replace-region-by #'my/underscores-to-dots-but-last-per-line)))
+
 
 ;; Killing text
 ;; (global-set-key (kbd "C-S-k") 'kill-and-retry-line)
@@ -204,6 +228,7 @@
 (key-chord-define-global ".-" "[]\C-b")
 (key-chord-define-global "\'\'" "''\C-b")
 (key-chord-define-global "\"\"" "\"\"\C-b")
+(key-chord-define-global "--" " = ")
 (key-chord-define-global "qq" (λ (kill-buffer (buffer-name))))
 
 ;; Webjump let's you quickly search google, wikipedia, emacs wiki
@@ -231,7 +256,8 @@
 ;; (global-set-key (kbd "H-n") 'end-of-buffer)
 
 ;; Visual regexp
-(define-key global-map (kbd "M-&") 'vr/query-replace)
+;; (define-key global-map (kbd "M-&") 'vr/query-replace)
+(define-key global-map (kbd "M-#") 'vr/query-replace)
 (define-key global-map (kbd "M-/") 'vr/replace)
 
 ;; ;; Yank selection in isearch
@@ -394,7 +420,7 @@
 (global-set-key (kbd "H-k") (λ (kill-buffer (buffer-name))))
 
 ;; Open terminal
-(global-set-key (kbd "C-x t") (λ (shell-command "open -a /Applications/Utilities/Terminal.app .")))
+(global-set-key (kbd "C-x t") (λ (shell-command "open -a /Applications/iTerm.app/Contents/MacOS/iTerm2 .")))
 
 ;; Flycheck
 (define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)

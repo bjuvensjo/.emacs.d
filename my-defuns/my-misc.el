@@ -29,6 +29,11 @@
   (dotimes (i (or n 1))
     (downcase-region (point) (progn (forward-char) (point)))))
 
+(defun mbj/reverse-string-region ()
+  "Reverse string in region"
+  (interactive)
+  (replace-region-by (lambda (content) (nreverse content))))
+
 (defun mbj/upcase-char-at-point (n)
   "Upcase char at point N."
   (interactive "p")
@@ -63,7 +68,7 @@
              (setq n (1+ n))
              (get-buffer filename)))
     (find-file (expand-file-name filename file-visiting-scratch-buffer-dir))
-    (emacs-lisp-mode)))
+    (text-mode)))
 
 (defun delete-file-visiting-scratch-buffers nil
   "Delete all file visiting scratch buffers"
@@ -89,6 +94,10 @@
 
 (fset 'git-do-commit
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([home 19 67 104 97 110 103 101 115 32 116 111 32 98 101 32 99 111 109 109 105 116 116 101 100 return 1 11 11 4 4 3 3] 0 "%d")) arg)))
+
+(fset 'py-copy-full-diff
+      [?\C-s ?F ?u ?l ?l ?  ?d ?i ?f ?f ?: return ?\C-s ?+ return right ?\C-+ ?\M-w])
+
 
 (provide 'my-misc)
 

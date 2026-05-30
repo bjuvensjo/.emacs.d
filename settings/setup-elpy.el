@@ -1,13 +1,21 @@
-(setenv "WORKON_HOME" "/Users/ei4577/Dropbox/venv")
+;; (setenv "WORKON_HOME" "/Users/ei4577/Dropbox/venv")
+;; (setenv "WORKON_HOME" "~/anaconda3/envs")
+(setenv "WORKON_HOME" "/usr/local/Caskroom/miniconda/base/envs")
 
 (elpy-enable)
 
 ;; (add-hook 'before-save-hook #'elpy-autopep8-fix-code)
 (setq elpy-rpc-backend "jedi")
 
-(add-hook 'before-save-hook #'elpy-format-code)
-(add-hook 'elpy-mode-hook
-          (λ (add-hook 'after-save-hook (λ (elpy-test 1)) nil 'make-it-local)))
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
+
+;; (add-hook 'before-save-hook #'elpy-format-code)
+(add-hook 'elpy-mode-hook (lambda ()
+                            (add-hook 'before-save-hook
+                                      'elpy-black-fix-code nil t)))
+;; (add-hook 'elpy-mode-hook
+;;           (λ (add-hook 'after-save-hook (λ (elpy-test 1)) nil 'make-it-local)))
 
 (setq elpy-test-runner 'elpy-test-pytest-runner)
 

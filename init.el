@@ -1,5 +1,6 @@
-; Set fringes
+;; Set fringes
 (set-fringe-style '(10 . 0))
+
 
 ;; Turn off mouse interface early in startup to avoid momentary display
 ;; (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -46,20 +47,15 @@
 (defun init--install-packages ()
   (packages-install
    '(;; whitespace-cleanup-mode
-     ace-jump-mode
-     ;; anaconda-mode
+     ;; ace-jump-mode
+     avy
      browse-kill-ring
      change-inner
-     cider
-     clj-refactor
-     clojure-mode     
-     ;; clojure-mode-extra-font-locking
      company
      dash
      diminish
-     dired-details
      elisp-slime-nav
-     elpy
+     ;; elpy
      elmacro
      expand-region
      f
@@ -67,42 +63,36 @@
      flx
      flx-ido
      flycheck
-     flycheck-clojure
      flycheck-pos-tip
-     gist
-     go-mode
-     groovy-mode
-     guide-key
-     htmlize
+     ;; gist
      hydra
      ido-at-point
      ;; ido-ubiquitous
      ido-completing-read+
      ido-vertical-mode
-     iy-go-to-char
-     js2-mode
+     ;; iy-go-to-char
      json-mode
      key-chord
-     magit
      markdown-mode
      move-text
      multiple-cursors
-     paredit
+     ;; paredit
      phi-search
+	 pinentry
+     plantuml-mode
      popup
-     restclient
+     ;; restclient
      s
-     shell-command
      smartparens
      smex
      smooth-scrolling
      undo-tree
      visual-regexp
      wgrep
-     yaml-mode
+     window-numbering
+     ;; yaml-mode
      yasnippet
      zencoding-mode
-     ;;zoom-frm
 )))
 
 (condition-case nil
@@ -119,12 +109,11 @@
 
 
 ;; Functions (load all el-files in wiki-defuns-dir)
-(setq wiki-defuns-dir (expand-file-name "wiki-defuns" emacs.d-directory))
+(setq wiki-defuns-dir (expand-file-name "wiki-defuns" emacs.d-directory)) 
 (load (expand-file-name "frame-fns.el" wiki-defuns-dir))
 (dolist (file (directory-files wiki-defuns-dir t "\\w+.el"))
   (when (file-regular-p file)
     (load file)))
-
 
 ;; Functions (load all el-files in my-defuns-dir)
 (setq my-defuns-dir (expand-file-name "my-defuns" emacs.d-directory))
@@ -145,77 +134,51 @@
 
 (setq shell-command-switch "-ic")
 
-;; guide-key
-(require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +"))
-(guide-key-mode 1)
-(setq guide-key/recursive-key-sequence-flag t)
-(setq guide-key/popup-window-position 'bottom)
-
 ;; ;; Setup extensions
 (eval-after-load 'ido '(require 'setup-ido))
 ;; (eval-after-load 'org '(require 'setup-org))
-(eval-after-load 'dired '(require 'setup-dired))
-(eval-after-load 'magit '(require 'setup-magit))
+;; (eval-after-load 'dired '(require 'setup-dired))
 (eval-after-load 'grep '(require 'setup-rgrep))
-(eval-after-load 'multiple-cursors '(require 'setup-iy-go-to-char))
-;; (eval-after-load 'shell '(require 'setup-shell))
 (require 'setup-hippie)
 (require 'key-chord)
 (key-chord-mode 1)
-(require 'setup-paredit)
-(require 'setup-elpy)
-;; (require 'setup-anaconda)
-;; (require 'setup-perspective)
-(require 'setup-restclient)
+;; (require 'setup-paredit)
+;; (require 'setup-elpy)
+(require 'setup-flycheck)
+;; (require 'setup-restclient)
 (require 'setup-smartparens)
-(require 'setup-yaml)
+;; (require 'setup-yaml)
 (require 'setup-yasnippet)
 (require 'setup-ffip)
-;; (require 'setup-html-mode)
 (require 'setup-webjump)
+
+;; PlantUML
+(setq plantuml-jar-path "/Users/magnus/plantuml.jar")
+(setq plantuml-default-exec-mode 'jar)
+;; Enable plantuml-mode for PlantUML files
+(add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
 
 ;; Language specific setup files
-(eval-after-load 'js2-mode '(require 'setup-js2-mode))
-(eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
 (eval-after-load 'markdown-mode '(require 'setup-markdown-mode))
 
 ;; Load stuff on demand
-;; (autoload 'skewer-start "setup-skewer" nil t)
-;; (autoload 'skewer-demo "setup-skewer" nil t)
 (autoload 'auto-complete-mode "auto-complete" nil t)
 (eval-after-load 'flycheck '(require 'setup-flycheck))
 
-;; Map files to modes
-;; (require 'mode-mappings)
-
-;; Highlight escape sequences
-;; (require 'highlight-escape-sequences)
-;; (hes-mode)
-;; (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
-
 (require 'expand-region)
 (require 'multiple-cursors)
-(require 'jump-char)
-;; (require 'eproject)
 (require 'visual-regexp)
 (require 'wgrep)
-;; (require 'smart-forward)
 (require 'change-inner)
-;; (require 'multifiles)
 
 ;; ;; Don't use expand-region fast keys
 (setq expand-region-fast-keys-enabled t)
 
 ;; ;; Show expand-region command used
 (setq er--show-expansion-message t)
-
-;; ;; Fill column indicator
-;; (require 'fill-column-indicator)
-;; (setq fci-rule-color "#111122")
 
 ;; ;; Browse kill ring
 (require 'browse-kill-ring)
@@ -249,7 +212,6 @@
 
 ;; gpg
 (setq epg-gpg-program "gpg2")
-;;(setq epg-gpg-program "gpg")
 (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
 (pinentry-start)
 (setenv "GPG_AGENT_INFO" nil)
@@ -268,10 +230,6 @@
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
-;; Conclude init by setting up specifics for the current user
-;; (when (file-exists-p user-settings-dir)
-;;   (mapc 'load (directory-files user-settings-dir nil "^[^#].*el$")))
-
 ;; Company mode everywhere
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-dabbrev-downcase nil)
@@ -281,14 +239,22 @@
 ;; (add-to-list 'initial-frame-alist '(width  . 166))
 ;; (add-to-list 'initial-frame-alist '(height . 47))
 
-;; Git
-(global-git-commit-mode)
-
 ;; xml indentation
 (setq nxml-child-indent 4 nxml-attribute-indent 4)
 
 ;; indentation
 (setq c-basic-offset 4)
 
+;; Undo
+(global-undo-tree-mode)
+(setq undo-tree-auto-save-history t)
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+
+;; Set font
+;; (set-frame-font "Menlo 12" nil t)
+(set-frame-font "Andale Mono 12" nil t)
+
 ;; window numbering
 (window-numbering-mode)
+
+
