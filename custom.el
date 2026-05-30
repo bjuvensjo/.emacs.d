@@ -25,8 +25,6 @@
      "ea0c5df0f067d2e3c0f048c1f8795af7b873f5014837feb0a7c8317f34417b04"
      "9f42bccce1e13fa5017eb8718574db099e85358b9f424db78e7318f86d1be08f" default))
  '(elpy-mode-hook '(flycheck-mode smartparens-mode))
- '(elpy-rpc-timeout 5)
- '(elpy-test-pytest-runner-command '("py.test"))
  '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
  '(ido-mode 'both nil (ido))
  '(ido-use-filename-at-point nil)
@@ -37,15 +35,11 @@
      ("melpa" . "http://melpa.org/packages/")
      ("melpa-stable" . "http://stable.melpa.org/packages/")))
  '(package-selected-packages
-   '(avy browse-kill-ring change-inner company diminish elisp-slime-nav elmacro
-         exec-path-from-shell f find-file-in-project flx-ido flycheck
-         flycheck-pos-tip gh highlight-indentation hydra ido-at-point
-         ido-completing-read+ ido-vertical-mode json-mode key-chord
-         markdown-mode move-text multiple-cursors parseedn phi-search pinentry
-         plantuml-mode popup pyvenv sesman smartparens smex smooth-scrolling
-         spinner undo-tree visual-regexp wgrep window-numbering yaml-mode
-         yasnippet zencoding-mode))
- '(python-shell-completion-native-enable nil)
+   '(avy browse-kill-ring change-inner company deflate diminish elisp-slime-nav
+         exec-path-from-shell f flx-ido flycheck-pos-tip highlight-indentation
+         hydra ido-at-point ido-completing-read+ ido-vertical-mode key-chord
+         move-text multiple-cursors phi-search popup sesman smartparens smex
+         smooth-scrolling spinner undo-tree visual-regexp wgrep window-numbering))
  '(safe-local-variable-values
    '((eval font-lock-add-keywords nil
            '(("defexamples\\|def-example-group\\| => "

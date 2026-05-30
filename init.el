@@ -47,41 +47,28 @@
 (defun init--install-packages ()
   (packages-install
    '(;; whitespace-cleanup-mode
-     ;; ace-jump-mode
-     avy
+      avy
      browse-kill-ring
      change-inner
      company
      dash
      diminish
      elisp-slime-nav
-     ;; elpy
-     elmacro
      expand-region
      f
-     find-file-in-project
      flx
      flx-ido
      flycheck
      flycheck-pos-tip
-     ;; gist
      hydra
      ido-at-point
-     ;; ido-ubiquitous
      ido-completing-read+
      ido-vertical-mode
-     ;; iy-go-to-char
-     json-mode
      key-chord
-     markdown-mode
      move-text
      multiple-cursors
-     ;; paredit
      phi-search
-	 pinentry
-     plantuml-mode
      popup
-     ;; restclient
      s
      smartparens
      smex
@@ -90,9 +77,6 @@
      visual-regexp
      wgrep
      window-numbering
-     ;; yaml-mode
-     yasnippet
-     zencoding-mode
 )))
 
 (condition-case nil
@@ -136,27 +120,12 @@
 
 ;; ;; Setup extensions
 (eval-after-load 'ido '(require 'setup-ido))
-;; (eval-after-load 'org '(require 'setup-org))
-;; (eval-after-load 'dired '(require 'setup-dired))
 (eval-after-load 'grep '(require 'setup-rgrep))
 (require 'setup-hippie)
 (require 'key-chord)
 (key-chord-mode 1)
-;; (require 'setup-paredit)
-;; (require 'setup-elpy)
 (require 'setup-flycheck)
-;; (require 'setup-restclient)
 (require 'setup-smartparens)
-;; (require 'setup-yaml)
-(require 'setup-yasnippet)
-(require 'setup-ffip)
-(require 'setup-webjump)
-
-;; PlantUML
-(setq plantuml-jar-path "/Users/magnus/plantuml.jar")
-(setq plantuml-default-exec-mode 'jar)
-;; Enable plantuml-mode for PlantUML files
-(add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
 
 ;; Font lock dash.el
 (eval-after-load "dash" '(dash-enable-font-lock))
@@ -188,14 +157,6 @@
 (require 'smex)
 (smex-initialize)
 
-;; Zencoding
-(require 'zencoding-mode)
-(add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-
-;; elmacro
-(require 'elmacro)
-;; (elmacro-mode)
-
 ;; phi-search
 (require 'phi-search)
 (setq phi-search-limit           10000
@@ -206,15 +167,11 @@
 (require 'key-bindings)
 
 ;; Misc
-;; ;; (require 'project-archetypes)
 ;; (require 'my-misc)
 (when is-mac (require 'mac))
 
 ;; gpg
-(setq epg-gpg-program "gpg2")
-(setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
-(pinentry-start)
-(setenv "GPG_AGENT_INFO" nil)
+;; (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
 
 ;; ;; Elisp go-to-definition with M-. and back again with M-,
 (autoload 'elisp-slime-nav-mode "elisp-slime-nav")
@@ -236,8 +193,6 @@
 
 ;; Frame window size
 (set-frame-parameter nil 'fullscreen 'fullboth)
-;; (add-to-list 'initial-frame-alist '(width  . 166))
-;; (add-to-list 'initial-frame-alist '(height . 47))
 
 ;; xml indentation
 (setq nxml-child-indent 4 nxml-attribute-indent 4)
@@ -251,7 +206,6 @@
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 ;; Set font
-;; (set-frame-font "Menlo 12" nil t)
 (set-frame-font "Andale Mono 12" nil t)
 
 ;; window numbering
