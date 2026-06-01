@@ -6,7 +6,8 @@
 
 (package-initialize)
 
-(unless (file-exists-p "/Users/magnus/GoogleDrive/IT/emacs/emacs.d/elpa/archives/melpa")
+;; (unless (file-exists-p "/Users/magnus/GoogleDrive/IT/emacs/emacs.d/elpa/archives/melpa")
+(unless (file-exists-p "/Users/magnus/git/.emacs.d/elpa/archives/melpa")
   (package-refresh-contents))
 
 (defun packages-install (packages)
