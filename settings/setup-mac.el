@@ -114,4 +114,4 @@
 
 (setq-default magit-revision-use-gravatar-kludge t)
 
-(provide 'mac)
+(provide 'setup-mac)

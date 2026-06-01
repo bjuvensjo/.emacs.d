@@ -266,4 +266,4 @@
  (lambda ()
    (define-key emacs-lisp-mode-map (kbd "C-c C-k") 'mbj/ert-t)))
 
-(provide 'key-bindings)
+(provide 'setup-key-bindings)

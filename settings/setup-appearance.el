@@ -26,35 +26,12 @@
                       :height
                       180))
 
-;; espresso theme
-(defun use-espresso-theme ()
-  (interactive)
-  (load-theme 'espresso)
-  (set-font-size))
-
-;; leuven theme
-(defun use-leuven-theme ()
-  (interactive)
-  (load-theme 'leuven)
-  (set-font-size))
-
-;; zenburn theme
-(defun use-zenburn-theme ()
-  (interactive)
-  (load-theme 'zenburn)
-  (set-font-size))
-
 (defun use-default-theme ()
   (interactive)
   (load-theme 'default-black)
   (set-font-size))
 
-(global-set-key (kbd "C-<f9>") 'use-leuven-theme)
-
 (use-default-theme)
-;; (use-espresso-theme)
-;; (use-leuven-theme)
-;; (use-zenburn-theme)
 
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)
@@ -99,4 +76,4 @@
 (rename-modeline "js2-mode" js2-mode "JS2")
 (rename-modeline "clojure-mode" clojure-mode "Clj")
 
-(provide 'appearance)
+(provide 'setup-appearance)

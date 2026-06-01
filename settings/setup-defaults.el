@@ -8,6 +8,9 @@
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
 
+;; Don't blink the cursor
+(blink-cursor-mode -1)
+
 ;; Show keystrokes in progress
 (setq echo-keystrokes 0.1)
 
@@ -66,6 +69,7 @@
 
 ;; Never insert tabs
 (set-default 'indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 ;; Show me empty lines after buffer end
 (set-default 'indicate-empty-lines t)
@@ -111,6 +115,12 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
+;; Indentation for SGML/HTML and nxml
+(setq sgml-basic-offset 4)
+
+;; Use external converter for images Emacs can't decode natively
+(setq image-use-external-converter t)
+
 ;; No electric indent
 (setq electric-indent-mode nil)
 
@@ -141,4 +151,4 @@
 
 (add-to-list 'find-file-not-found-functions 'my-create-non-existent-directory)
 
-(provide 'sane-defaults)
+(provide 'setup-defaults)

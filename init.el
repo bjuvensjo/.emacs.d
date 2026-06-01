@@ -92,10 +92,10 @@
     (load file)))
 
 ;; Set up appearance early
-(require 'appearance)
+(require 'setup-appearance)
 
 ;; Lets start with a smattering of sanity
-(require 'sane-defaults)
+(require 'setup-defaults)
 
 ;; Setup environment variables from the user's shell.
 (when is-mac
@@ -142,11 +142,9 @@
       phi-search-case-sensitive  'guess) ;; You may also set “phi-search-case-sensitive” to ‘guess, to make phi-search case sensitive only when some upcase letters are in the query.
 
 ;; Setup key bindings
-(require 'key-bindings)
+(require 'setup-key-bindings)
 
-;; Misc
-;; (require 'my-misc)
-(when is-mac (require 'mac))
+(when is-mac (require 'setup-mac))
 
 ;; Elisp go-to-definition with M-. and back again with M-,
 (autoload 'elisp-slime-nav-mode "elisp-slime-nav")
@@ -170,7 +168,7 @@
 (set-frame-parameter nil 'fullscreen 'fullboth)
 
 ;; xml indentation
-(setq nxml-child-indent 4 nxml-attribute-indent 4)
+(setq nxml-child-indent 4 nxml-attribute-indent 4 nxml-outline-child-indent 4)
 
 ;; indentation
 (setq c-basic-offset 4)

@@ -3,10 +3,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
- '(cider-repl-use-pretty-printing t)
- '(cider-test-infer-test-ns 'identity)
- '(column-number-mode t)
  '(custom-safe-themes
    '("562e9a92a1407555af49e6cc983f9fc374b9acba53fe8bfc9dfe9ca459097b58"
      "e521c25ef12b83556b1055b8e49c9c33afd991eef7774519644561a963e7f4aa"
@@ -24,16 +20,6 @@
      "cb36f8e44d41595010baa23737984c4ecb2d8cc2e363ec15fbfa0408c2f8ea9f"
      "ea0c5df0f067d2e3c0f048c1f8795af7b873f5014837feb0a7c8317f34417b04"
      "9f42bccce1e13fa5017eb8718574db099e85358b9f424db78e7318f86d1be08f" default))
- '(elpy-mode-hook '(flycheck-mode smartparens-mode))
- '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
- '(ido-mode 'both nil (ido))
- '(ido-use-filename-at-point nil)
- '(image-use-external-converter t)
- '(nxml-outline-child-indent 4)
- '(package-archives
-   '(("gnu" . "https://elpa.gnu.org/packages/")
-     ("melpa" . "https://melpa.org/packages/")
-     ("melpa-stable" . "https://stable.melpa.org/packages/")))
  '(package-selected-packages nil)
  '(safe-local-variable-values
    '((eval font-lock-add-keywords nil
@@ -50,16 +36,4 @@
            (emacs-lisp-mode))
      (eval font-lock-add-keywords nil
            '(("defexamples\\| => " (0 'font-lock-keyword-face))))
-     (encoding . utf-8)))
- '(sgml-basic-offset 4)
- '(show-paren-mode t)
- '(tab-width 4)
- '(tool-bar-mode nil))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(js2-error-face ((t nil)) t)
- '(js2-warning-face ((t nil)) t))
+     (encoding . utf-8))))
