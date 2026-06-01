@@ -99,6 +99,26 @@
       [?\C-s ?F ?u ?l ?l ?  ?d ?i ?f ?f ?: return ?\C-s ?+ return right ?\C-+ ?\M-w])
 
 
+(defun mbj/zoom-frame (steps)
+  "Zoom selected frame font by STEPS × 10 units (positive = larger, negative = smaller).
+After invoking, use +/= to zoom in, - to zoom out, 0 to reset."
+  (interactive "p")
+  (set-face-attribute 'default (selected-frame)
+    :height (max 10 (+ (face-attribute 'default :height) (* steps 10))))
+  (set-transient-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map "+" (lambda () (interactive) (mbj/zoom-frame  1)))
+      (define-key map "=" (lambda () (interactive) (mbj/zoom-frame  1)))
+      (define-key map "-" (lambda () (interactive) (mbj/zoom-frame -1)))
+      (define-key map "0" #'mbj/zoom-frame-reset)
+      map)
+    t))
+
+(defun mbj/zoom-frame-reset ()
+  "Reset selected frame font to the global default size."
+  (interactive)
+  (set-face-attribute 'default (selected-frame) :height 'unspecified))
+
 (provide 'my-misc)
 
 ;;; my-misc.el ends here

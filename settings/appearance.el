@@ -75,9 +75,6 @@
   (tooltip-mode -1)
   (blink-cursor-mode -1))
 
-;; Make zooming affect frame instead of buffers
-(require 'zoom-frm)
-
 ;; Unclutter the modeline
 (require 'diminish)
 (eval-after-load "company" '(diminish 'company-mode))

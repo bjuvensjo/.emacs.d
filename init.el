@@ -85,13 +85,6 @@
   (when (file-regular-p file)
     (load file)))
 
-;; Functions (load all el-files in wiki-defuns-dir)
-(setq wiki-defuns-dir (expand-file-name "wiki-defuns" emacs.d-directory)) 
-(load (expand-file-name "frame-fns.el" wiki-defuns-dir))
-(dolist (file (directory-files wiki-defuns-dir t "\\w+.el"))
-  (when (file-regular-p file)
-    (load file)))
-
 ;; Functions (load all el-files in my-defuns-dir)
 (setq my-defuns-dir (expand-file-name "my-defuns" emacs.d-directory))
 (dolist (file (directory-files my-defuns-dir t "\\w+.el"))
