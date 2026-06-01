@@ -1,5 +1,4 @@
-;; I don't need to kill emacs that easily
-;; the mnemonic is C-x REALLY QUIT
+;; I don't need to kill emacs that easily. The mnemonic is C-x REALLY QUIT
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 (global-set-key (kbd "C-x C-c") 'delete-frame)
 
@@ -44,13 +43,13 @@
 
 (global-set-key (kbd "C-x r t") 'mc/edit-lines)
 
-;; ;; Quickly jump in document with avy
+;; Quickly jump in document with avy
 (key-chord-define-global "ss" 'avy-goto-char)
 (key-chord-define-global "SS" 'avy-pop-mark)
 (global-set-key (kbd "C-ö") 'avy-goto-char)
 (global-set-key (kbd "C-Ö") 'avy-pop-mark)
 
-;; ;; Perform general cleanup
+;; Perform general cleanup
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
 (global-set-key (kbd "C-c C-n") 'cleanup-buffer)
 (global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
@@ -61,7 +60,7 @@
 ;; M-i for back-to-indentation
 (global-set-key (kbd "M-i") 'back-to-indentation)
 
-;; ;; Transpose stuff with M-t
+;; Transpose stuff with M-t
 ;; (global-unset-key (kbd "M-t")) ;; which used to be transpose-words
 ;; (global-set-key (kbd "M-t l") 'transpose-lines)
 ;; (global-set-key (kbd "M-t w") 'transpose-words)
@@ -97,54 +96,46 @@
 
 
 ;; Killing text
-;; (global-set-key (kbd "C-S-k") 'kill-and-retry-line)
 (global-set-key (kbd "C-w") 'kill-region-or-backward-word)
 (global-set-key (kbd "C-c C-w") 'kill-to-beginning-of-line)
 
-;; ;; Use M-w for copy-line if no active region
+;; Use M-w for copy-line if no active region
 (global-set-key (kbd "M-w") 'save-region-or-current-line)
 (global-set-key (kbd "s-w") 'save-region-or-current-line)
 (global-set-key (kbd "M-W") (λ (save-region-or-current-line 1)))
 
-;; ;; Make shell more convenient, and suspend-frame less
-;; (global-set-key (kbd "C-z") 'shell)
+;; Make shell more convenient, and suspend-frame less
 (global-set-key (kbd "C-x M-z") 'suspend-frame)
 
-;; ;; vim's ci and co commands
+;; vim's ci and co commands
 (global-set-key (kbd "M-I") 'change-inner)
 (global-set-key (kbd "M-O") 'change-outer)
 
 (global-set-key (kbd "s-i") 'copy-inner)
 (global-set-key (kbd "s-o") 'copy-outer)
 
-;; ;; Create new frame
+;; Create new frame
 (define-key global-map (kbd "C-x C-n") 'make-frame-command)
 
-;; ;; Jump to a definition in the current file. (This is awesome)
+;; Jump to a definition in the current file. (This is awesome)
 (global-set-key (kbd "C-x C-i") 'ido-imenu)
 
-;; ;; File finding
+;; File finding
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 (global-set-key (kbd "C-x f") 'recentf-ido-find-file)
 (global-set-key (kbd "C-x C-p") 'find-or-create-file-at-point)
 (global-set-key (kbd "C-x M-p") 'find-or-create-file-at-point-other-window)
-;; (global-set-key (kbd "C-c y") 'bury-buffer)
 (global-set-key (kbd "C-c r") 'revert-buffer)
-;; (global-set-key (kbd "M-`") 'file-cache-minibuffer-complete)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;; ;; toggle two most recent buffers
+;; toggle two most recent buffers
 (fset 'quick-switch-buffer [?\C-x ?b return])
 (global-set-key (kbd "C-z") 'quick-switch-buffer)
 
 ;; Revert without any fuss
 (global-set-key (kbd "M-<escape>") (λ (revert-buffer t t)))
 
-;; ;; Edit file with sudo
-;; (global-set-key (kbd "M-s e") 'sudo-edit)
-
-;; ;; Window switching
-;; (windmove-default-keybindings) ;; Shift+direction
+;; Window switching
 (global-set-key (kbd "C-x -") 'toggle-window-split)
 (global-set-key (kbd "C-x C--") 'rotate-windows)
 (global-unset-key (kbd "C-x C-+")) ;; don't zoom like this
@@ -155,11 +146,11 @@
 ;; Help should search more than just commands
 (global-set-key (kbd "<f1> a") 'apropos)
 
-;; ;; Should be able to eval-and-replace anywhere.
+;; Should be able to eval-and-replace anywhere.
 (global-set-key (kbd "C-c C-e") 'eval-and-replace)
 (global-set-key (kbd "M-s-e") 'eval-and-replace)
 
-;; ;; Navigation bindings
+;; Navigation bindings
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
 ;; jump-char - like f in Vim
@@ -183,7 +174,6 @@
 (global-set-key (kbd "C-<tab>") 'completion-at-point)
 
 ;; Visual regexp
-;; (define-key global-map (kbd "M-&") 'vr/query-replace)
 (define-key global-map (kbd "M-#") 'vr/query-replace)
 (define-key global-map (kbd "M-/") 'vr/replace)
 
@@ -195,7 +185,6 @@
 (global-set-key (kbd "C-c C-k") 'eval-buffer)
 
 ;; Create scratch buffer
-;; (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c b") 'create-file-visiting-scratch-buffer)
 (global-set-key (kbd "C-c B") 'delete-file-visiting-scratch-buffers)
 
@@ -211,10 +200,6 @@
 (global-set-key (kbd "<S-s-left>") 'shrink-window-horizontally)
 (global-set-key (kbd "<S-s-right>") 'enlarge-window-horizontally)
 
-;; Magit
-;; (global-set-key (kbd "C-x m") 'magit-status-fullscreen)
-;; (autoload 'magit-status-fullscreen "magit")
-
 ;; Clever newlines
 (global-set-key (kbd "C-o") 'open-line-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
@@ -228,26 +213,16 @@
 (global-set-key (kbd "<C-S-down>") 'move-text-down)
 (global-set-key (kbd "<C-S-up>") 'move-text-up)
 
-;; ;; Browse the kill ring
+;; Browse the kill ring
 (global-set-key (kbd "C-x C-y") 'browse-kill-ring)
 
 ;; Buffer file functions
-;; (global-set-key (kbd "C-x t") 'touch-buffer-file)
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
-;; (global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
 
-;; Easy-mode fullscreen rgrep
-;; (global-set-key (kbd "M-g s") 'git-grep-fullscreen)
-;; (global-set-key (kbd "M-g S") 'rgrep-fullscreen)
-
-;; ;; Toggle frame fullscreen
+;; Toggle frame fullscreen
 (global-set-key (kbd "H-f") 'toggle-frame-fullscreen)
 
-;; ;; Multi-occur
-;; (global-set-key (kbd "M-s m") 'multi-occur)
-;; (global-set-key (kbd "M-s M") 'multi-occur-in-matching-buffers)
-
-;; ;; Display and edit occurances of regexp in buffer
+;; Display and edit occurances of regexp in buffer
 (global-set-key (kbd "C-c o") 'occur)
 
 ;; Find files by name and display results in dired

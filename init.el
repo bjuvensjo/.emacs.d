@@ -1,7 +1,6 @@
 ;; set fringes
 (set-fringe-style '(10 . 0))
 
-
 ;; Turn off mouse interface early in startup to avoid momentary display
 ;; (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -40,7 +39,7 @@
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
 
-;; ;; Setup packages
+;; Setup packages
 (require 'setup-package)
 
 ;; Install extensions if they're missing
@@ -86,7 +85,6 @@
   (when (file-regular-p file)
     (load file)))
 
-
 ;; Functions (load all el-files in wiki-defuns-dir)
 (setq wiki-defuns-dir (expand-file-name "wiki-defuns" emacs.d-directory)) 
 (load (expand-file-name "frame-fns.el" wiki-defuns-dir))
@@ -113,7 +111,7 @@
 
 (setq shell-command-switch "-ic")
 
-;; ;; Setup extensions
+;; Setup extensions
 (eval-after-load 'ido '(require 'setup-ido))
 (eval-after-load 'grep '(require 'setup-rgrep))
 (require 'setup-hippie)
@@ -134,10 +132,10 @@
 ;; Use expand-region fast keys
 (setq expand-region-fast-keys-enabled t)
 
-;; ;; Show expand-region command used
+;; Show expand-region command used
 (setq er--show-expansion-message t)
 
-;; ;; Browse kill ring
+;; Browse kill ring
 (require 'browse-kill-ring)
 (setq browse-kill-ring-quit-action 'save-and-restore)
 
@@ -150,7 +148,6 @@
 (setq phi-search-limit           10000
       phi-search-case-sensitive  'guess) ;; You may also set “phi-search-case-sensitive” to ‘guess, to make phi-search case sensitive only when some upcase letters are in the query.
 
-
 ;; Setup key bindings
 (require 'key-bindings)
 
@@ -158,10 +155,7 @@
 ;; (require 'my-misc)
 (when is-mac (require 'mac))
 
-;; gpg
-;; (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
-
-;; ;; Elisp go-to-definition with M-. and back again with M-,
+;; Elisp go-to-definition with M-. and back again with M-,
 (autoload 'elisp-slime-nav-mode "elisp-slime-nav")
 (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t) (eldoc-mode 1)))
 
@@ -170,7 +164,7 @@
 (unless (server-running-p)
   (server-start))
 
-;; ;; Run at full power please
+;; Run at full power please
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
