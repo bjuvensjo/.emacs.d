@@ -1,4 +1,4 @@
-;; Set fringes
+;; set fringes
 (set-fringe-style '(10 . 0))
 
 
@@ -107,9 +107,9 @@
 (require 'sane-defaults)
 
 ;; Setup environment variables from the user's shell.
-;; (when is-mac
-;;   (require-package 'exec-path-from-shell)
-;;   (exec-path-from-shell-initialize))
+(when is-mac
+  (require-package 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
 
 (setq shell-command-switch "-ic")
 
@@ -124,14 +124,14 @@
 (eval-after-load "dash" '(dash-enable-font-lock))
 
 ;; Load stuff on demand
-(autoload 'auto-complete-mode "auto-complete" nil t)
+;; (autoload 'auto-complete-mode "auto-complete" nil t)
 
 (require 'expand-region)
 (require 'multiple-cursors)
 (require 'visual-regexp)
 (require 'change-inner)
 
-;; ;; Don't use expand-region fast keys
+;; Use expand-region fast keys
 (setq expand-region-fast-keys-enabled t)
 
 ;; ;; Show expand-region command used

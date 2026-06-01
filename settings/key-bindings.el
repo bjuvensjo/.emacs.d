@@ -168,8 +168,8 @@
 ;; (global-set-key (kbd "s-m") 'jump-char-backward)
 
 ;; Define some keychords
-(key-chord-define-global "fg" 'jump-char-forward)
-(key-chord-define-global "df" 'jump-char-backward)
+;; (key-chord-define-global "fg" 'jump-char-forward)
+;; (key-chord-define-global "df" 'jump-char-backward)
 (key-chord-define-global ";;" "\C-e;")
 (key-chord-define-global ",." "{}\C-b")
 (key-chord-define-global ".-" "[]\C-b")

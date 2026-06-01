@@ -57,7 +57,7 @@
 ;; (use-zenburn-theme)
 
 ;; Don't defer screen updates when performing operations
-(setq redisplay-dont-pause t)
+;; (setq redisplay-dont-pause t)
 
 ;; org-mode colors
 (setq org-todo-keyword-faces

@@ -2,7 +2,7 @@
 
 ;; Add melpa to package repos
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 (package-initialize)
 
@@ -13,11 +13,11 @@
 (defun packages-install (packages)
   (dolist (package packages)
     (unless (package-installed-p package)
-      (package-install package)))  
+      (package-install package))))
   ;; (--each packages
   ;;   (when (not (package-installed-p it))
   ;;     (package-install it)))
-  (delete-other-windows))
+  ;; (delete-other-windows))
 
 ;;; On-demand installation of packages
 

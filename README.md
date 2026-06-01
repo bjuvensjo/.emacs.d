@@ -3,8 +3,7 @@
 To use this configuration:
 
 1. git clone git://github.com/bjuvensjo/.emacs.d.git emacs.d
-2. Install markdown, e.g. brew install markdown
-3. Create a file: ~/.emacs.d/init.el, with the content below
+1. Create a file: ~/.emacs.d/init.el, with the content below
 
 ## init.el
 

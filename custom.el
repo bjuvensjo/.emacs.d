@@ -31,14 +31,10 @@
  '(image-use-external-converter t)
  '(nxml-outline-child-indent 4)
  '(package-archives
-   '(("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "http://melpa.org/packages/")
-     ("melpa-stable" . "http://stable.melpa.org/packages/")))
- '(package-selected-packages
-   '(avy browse-kill-ring change-inner company diminish elisp-slime-nav f flx-ido
-         flycheck highlight-indentation hydra ido-at-point ido-completing-read+
-         ido-vertical-mode key-chord move-text multiple-cursors phi-search
-         pos-tip smex undo-tree visual-regexp wgrep window-numbering))
+   '(("gnu" . "https://elpa.gnu.org/packages/")
+     ("melpa" . "https://melpa.org/packages/")
+     ("melpa-stable" . "https://stable.melpa.org/packages/")))
+ '(package-selected-packages nil)
  '(safe-local-variable-values
    '((eval font-lock-add-keywords nil
            '(("defexamples\\|def-example-group\\| => "

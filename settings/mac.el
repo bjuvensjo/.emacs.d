@@ -75,7 +75,7 @@
   (set-face-attribute 'default nil :font magnars/default-font))
 
 ;; keybinding to toggle full screen mode
-(global-set-key (quote [M-f10]) (quote ns-toggle-fullscreen))
+(global-set-key (quote [M-f10]) (quote toggle-frame-fullscreen))
 
 ;; Move to trash when deleting stuff
 (setq delete-by-moving-to-trash t
@@ -88,7 +88,8 @@
 (setq ns-pop-up-frames nil)
 
 ;; Use aspell for spell checking: brew install aspell --lang=en
-(setq ispell-program-name "/usr/local/bin/aspell")
+;; (setq ispell-program-name "/usr/local/bin/aspell")
+(setq ispell-program-name (executable-find "aspell"))
 
 ;; Open files
 ;; (defun mac-open-current-file ()
