@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(defun run-current-file ()
+(defun mbj/run-current-file ()
   "Execute or compile the current file.
 For example, if the current buffer is the file x.pl,
 then it'll call “perl x.pl” in a shell.

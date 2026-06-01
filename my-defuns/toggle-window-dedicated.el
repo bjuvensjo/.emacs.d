@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(defun toggle-window-dedicated ()
+(defun mbj/toggle-window-dedicated ()
   "Control whether or not Emacs is allowed to display another buffer in current window."
   (interactive)
   (message

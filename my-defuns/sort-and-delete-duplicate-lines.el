@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(defun sort-and-delete-duplicate-lines()
+(defun mbj/sort-and-delete-duplicate-lines()
   "Sort and delete duplicate lines in buffer."
   (interactive)
   (save-excursion

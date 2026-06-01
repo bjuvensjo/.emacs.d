@@ -55,7 +55,7 @@
 (global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
 ;; Delete all blank lines
 (key-chord-define-global "DD" (λ (flush-lines "^$" (point-min) (point-max))))
-(key-chord-define-global "ZZ" 'delete-line)
+(key-chord-define-global "ZZ" 'mbj/delete-line)
 
 ;; M-i for back-to-indentation
 (global-set-key (kbd "M-i") 'back-to-indentation)
@@ -185,8 +185,8 @@
 (global-set-key (kbd "C-c C-k") 'eval-buffer)
 
 ;; Create scratch buffer
-(global-set-key (kbd "C-c b") 'create-file-visiting-scratch-buffer)
-(global-set-key (kbd "C-c B") 'delete-file-visiting-scratch-buffers)
+(global-set-key (kbd "C-c b") 'mbj/create-file-visiting-scratch-buffer)
+(global-set-key (kbd "C-c B") 'mbj/delete-file-visiting-scratch-buffers)
 
 ;; Move windows, even in org-mode
 (global-set-key (kbd "<s-right>") 'windmove-right)
@@ -233,23 +233,23 @@
 (global-set-key (kbd "C-r") 'phi-search-backward)
 
 ;; Sort and delete duplicate lines in buffer"
-(global-set-key (kbd "<f9>") 'sort-and-delete-duplicate-lines)
+(global-set-key (kbd "<f9>") 'mbj/sort-and-delete-duplicate-lines)
 
 ;; Run current file
-(global-set-key (kbd "<f7>") 'run-current-file)
+(global-set-key (kbd "<f7>") 'mbj/run-current-file)
 
 ;; Toggle window dedicated
-(global-set-key (kbd "C-c t") 'toggle-window-dedicated)
+(global-set-key (kbd "C-c t") 'mbj/toggle-window-dedicated)
 
 ;; Downcase and upcase
 (global-set-key (kbd "H-d") 'mbj/downcase-char-at-point)
 (global-set-key (kbd "H-u") 'mbj/upcase-char-at-point)
 
 ;; Copy file path
-(global-set-key (kbd "C-c p") 'copy-full-path-to-kill-ring)
+(global-set-key (kbd "C-c p") 'mbj/copy-full-path-to-kill-ring)
 
 ;; Kill other buffers
-(global-set-key (kbd "C-c C-o") 'kill-other-buffers)
+(global-set-key (kbd "C-c C-o") 'mbj/kill-other-buffers)
 
 ;; Kill current buffer
 (global-set-key (kbd "H-k") (λ (kill-buffer (buffer-name))))
@@ -265,6 +265,6 @@
 (add-hook
  'emacs-lisp-mode-hook
  (lambda ()
-   (define-key emacs-lisp-mode-map (kbd "C-c C-k") 'ert-t)))
+   (define-key emacs-lisp-mode-map (kbd "C-c C-k") 'mbj/ert-t)))
 
 (provide 'key-bindings)

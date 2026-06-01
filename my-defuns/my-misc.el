@@ -9,7 +9,7 @@
     (global-set-key [ns-drag-file] 'ns-find-file))
 (setq ns-pop-up-frames nil)
 
-(defun copy-full-path-to-kill-ring ()
+(defun mbj/copy-full-path-to-kill-ring ()
   "Copy buffer's full path to kill ring."
   (interactive)
   (when buffer-file-name
@@ -40,12 +40,12 @@
   (dotimes (i (or n 1))
     (upcase-region (point) (progn (forward-char) (point)))))
 
-(defun ert-t ()
+(defun mbj/ert-t ()
   "Run ert t."
   (interactive)
   (ert t))
 
-(defun kill-other-buffers ()
+(defun mbj/kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
@@ -55,7 +55,7 @@
 (defvar file-visiting-scratch-buffer-dir (expand-file-name "fscratch" "~/.emacs.d"))
 (defvar file-visiting-scratch-buffer-pattern "^fscratch[1-9]*$")
 
-(defun create-file-visiting-scratch-buffer nil
+(defun mbj/create-file-visiting-scratch-buffer nil
   "Create a new file visiting scratch buffer to work in. (could be fscratch - fscratchX)"
   (interactive)
   (unless (file-directory-p file-visiting-scratch-buffer-dir)
@@ -70,7 +70,7 @@
     (find-file (expand-file-name filename file-visiting-scratch-buffer-dir))
     (text-mode)))
 
-(defun delete-file-visiting-scratch-buffers nil
+(defun mbj/delete-file-visiting-scratch-buffers nil
   "Delete all file visiting scratch buffers"
   (interactive)
   (let ((n (length (directory-files file-visiting-scratch-buffer-dir '() file-visiting-scratch-buffer-pattern)))
@@ -83,7 +83,7 @@
           (delete-directory file-visiting-scratch-buffer-dir t nil)
           (message "Deleted %s" file-visiting-scratch-buffer-dir)))))
 
-(defun delete-line ()
+(defun mbj/delete-line ()
   "Deletes current line"
   (interactive)
   (save-excursion
