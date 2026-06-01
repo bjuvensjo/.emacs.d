@@ -28,7 +28,14 @@
 
 (defun use-default-theme ()
   (interactive)
-  (load-theme 'default-black)
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme 'default-black t)
+  (set-font-size))
+
+(defun use-night-owl-theme ()
+  (interactive)
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme 'night-owl t)
   (set-font-size))
 
 (use-default-theme)

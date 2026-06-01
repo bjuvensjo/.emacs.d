@@ -64,6 +64,7 @@
      key-chord
      move-text
      multiple-cursors
+     night-owl-theme
      phi-search
      s
      smex

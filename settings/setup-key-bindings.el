@@ -221,6 +221,10 @@
 ;; Toggle frame fullscreen
 (global-set-key (kbd "H-f") 'toggle-frame-fullscreen)
 
+;; Switch themes
+(global-set-key (kbd "C-<f7>") 'use-default-theme)
+(global-set-key (kbd "C-<f9>") 'use-night-owl-theme)
+
 ;; Display and edit occurances of regexp in buffer
 (global-set-key (kbd "C-c o") 'occur)
 
