@@ -18,13 +18,8 @@ File suffix is used to determine what program to run."
     (setq ext-map
           '(
             ("groovy" . "/usr/local/bin/groovy")
-            ("coffee" . "/usr/local/share/npm/bin/coffee")
-            ("go" . "/usr/local/go/bin/go run")
-            ("litcoffee" . "/usr/local/share/npm/bin/coffee")
             ("java" . "javac")
             ("js" . "/usr/local/bin/node")
-            ("php" . "php")
-            ("pl" . "perl")
             ("py" . "python3")
             ("sh" . "bash")
             )

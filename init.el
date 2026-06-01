@@ -165,10 +165,10 @@
 (autoload 'elisp-slime-nav-mode "elisp-slime-nav")
 (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t) (eldoc-mode 1)))
 
-;; ;; Emacs server
-;; (require 'server)
-;; (unless (server-running-p)
-;;   (server-start))
+;; Emacs server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 ;; ;; Run at full power please
 (put 'downcase-region 'disabled nil)
@@ -199,4 +199,4 @@
 ;; window numbering
 (window-numbering-mode)
 
-
+(add-to-list 'default-frame-alist '(fullscreen . fullboth)) 

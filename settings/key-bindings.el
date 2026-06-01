@@ -163,9 +163,9 @@
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
 ;; jump-char - like f in Vim
-(global-set-key (kbd "M-m") 'jump-char-forward)
-(global-set-key (kbd "M-M") 'jump-char-backward)
-(global-set-key (kbd "s-m") 'jump-char-backward)
+;; (global-set-key (kbd "M-m") 'jump-char-forward)
+;; (global-set-key (kbd "M-M") 'jump-char-backward)
+;; (global-set-key (kbd "s-m") 'jump-char-backward)
 
 ;; Define some keychords
 (key-chord-define-global "fg" 'jump-char-forward)
@@ -212,8 +212,8 @@
 (global-set-key (kbd "<S-s-right>") 'enlarge-window-horizontally)
 
 ;; Magit
-(global-set-key (kbd "C-x m") 'magit-status-fullscreen)
-(autoload 'magit-status-fullscreen "magit")
+;; (global-set-key (kbd "C-x m") 'magit-status-fullscreen)
+;; (autoload 'magit-status-fullscreen "magit")
 
 ;; Clever newlines
 (global-set-key (kbd "C-o") 'open-line-and-indent)
@@ -237,8 +237,8 @@
 ;; (global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
 
 ;; Easy-mode fullscreen rgrep
-(global-set-key (kbd "M-g s") 'git-grep-fullscreen)
-(global-set-key (kbd "M-g S") 'rgrep-fullscreen)
+;; (global-set-key (kbd "M-g s") 'git-grep-fullscreen)
+;; (global-set-key (kbd "M-g S") 'rgrep-fullscreen)
 
 ;; ;; Toggle frame fullscreen
 (global-set-key (kbd "H-f") 'toggle-frame-fullscreen)
