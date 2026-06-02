@@ -56,6 +56,8 @@
 ;; Delete all blank lines
 (key-chord-define-global "DD" (λ (flush-lines "^$" (point-min) (point-max))))
 (key-chord-define-global "ZZ" 'mbj/delete-line)
+(key-chord-define-global "gg" 'beginning-of-buffer)
+(key-chord-define-global "GG" 'end-of-buffer)
 
 ;; M-i for back-to-indentation
 (global-set-key (kbd "M-i") 'back-to-indentation)
