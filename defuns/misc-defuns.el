@@ -40,17 +40,4 @@
 
 (global-set-key (kbd "s-l") (λ (insert "\u03bb")))
 
-;; Add spaces and proper formatting to linum-mode. It uses more room than
-;; necessary, but that's not a problem since it's only in use when going to
-;; lines.
-(setq linum-format (lambda (line)
-                     (propertize
-                      (format (concat " %"
-                                      (number-to-string
-                                       (length (number-to-string
-                                                (line-number-at-pos (point-max)))))
-                                      "d ")
-                              line)
-                      'face 'linum)))
-
 (defmacro comment (&rest ignore))

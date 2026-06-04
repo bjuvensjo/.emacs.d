@@ -39,7 +39,6 @@
 
 ;; Show active region
 (transient-mark-mode 1)
-(make-variable-buffer-local 'transient-mark-mode)
 (put 'transient-mark-mode 'permanent-local t)
 (setq-default transient-mark-mode t)
 
@@ -130,14 +129,15 @@
 
 ;; When popping the mark, continue popping until the cursor actually moves
 ;; Also, if the last command was a copy - skip past all the expand-region cruft.
-(defadvice pop-to-mark-command (around ensure-new-position activate)
-  (let ((p (point)))
-    (when (eq last-command 'save-region-or-current-line)
-      ad-do-it
-      ad-do-it
-      ad-do-it)
-    (dotimes (i 10)
-      (when (= p (point)) ad-do-it))))
+(advice-add 'pop-to-mark-command :around
+  (lambda (orig-fn)
+    (let ((p (point)))
+      (when (eq last-command 'save-region-or-current-line)
+        (funcall orig-fn)
+        (funcall orig-fn)
+        (funcall orig-fn))
+      (dotimes (_ 10)
+        (when (= p (point)) (funcall orig-fn))))))
 
 (setq set-mark-command-repeat-pop t)
 

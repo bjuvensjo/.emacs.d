@@ -78,11 +78,11 @@ region-end is used."
   (if (bound-and-true-p paredit-mode)
       (paredit-duplicate-current-line)
     (save-excursion
-      (when (eq (point-at-eol) (point-max))
+      (when (eq (line-end-position) (point-max))
         (goto-char (point-max))
         (newline)
         (forward-char -1))
-      (duplicate-region num (point-at-bol) (1+ (point-at-eol))))))
+      (duplicate-region num (line-beginning-position) (1+ (line-end-position))))))
 
 ;; automatically indenting yanked text if in programming-modes
 
@@ -101,19 +101,19 @@ region-end is used."
   (if (<= (- end beg) yank-advised-indent-threshold)
       (indent-region beg end nil)))
 
-(defadvice yank (after yank-indent activate)
-  "If current mode is one of 'yank-indent-modes, indent yanked text (with prefix arg don't indent)."
-  (if (and (not (ad-get-arg 0))
-           (--any? (derived-mode-p it) yank-indent-modes))
+(advice-add 'yank :after
+  (lambda (&optional arg &rest _)
+    (when (and (not arg)
+               (--any? (derived-mode-p it) yank-indent-modes))
       (let ((transient-mark-mode nil))
-        (yank-advised-indent-function (region-beginning) (region-end)))))
+        (yank-advised-indent-function (region-beginning) (region-end))))))
 
-(defadvice yank-pop (after yank-pop-indent activate)
-  "If current mode is one of 'yank-indent-modes, indent yanked text (with prefix arg don't indent)."
-  (if (and (not (ad-get-arg 0))
-           (member major-mode yank-indent-modes))
+(advice-add 'yank-pop :after
+  (lambda (&optional arg &rest _)
+    (when (and (not arg)
+               (member major-mode yank-indent-modes))
       (let ((transient-mark-mode nil))
-        (yank-advised-indent-function (region-beginning) (region-end)))))
+        (yank-advised-indent-function (region-beginning) (region-end))))))
 
 ;; kill region if active, otherwise kill backward word
 

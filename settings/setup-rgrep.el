@@ -81,8 +81,7 @@
 
 (require 'dash)
 
-(defvar grep-match-positions nil)
-(make-variable-buffer-local 'grep-match-positions)
+(defvar-local grep-match-positions nil)
 
 (defun grep-register-match-positions ()
   (save-excursion
@@ -100,8 +99,9 @@
           (add-to-list 'grep-match-positions (set-marker (make-marker) (match-beginning 1))))))))
 
 (eval-after-load "grep"
-  '(defadvice grep-mode (after grep-register-match-positions activate)
-     (add-hook 'compilation-filter-hook 'grep-register-match-positions nil t)))
+  '(advice-add 'grep-mode :after
+     (lambda (&rest _)
+       (add-hook 'compilation-filter-hook 'grep-register-match-positions nil t))))
 
 (defun mc/add-cursors-to-all-matches ()
   (interactive)

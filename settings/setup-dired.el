@@ -14,8 +14,7 @@
           dired-do-copy
           dired-create-directory
           wdired-abort-changes)
-        (eval `(defadvice ,it (after revert-buffer activate)
-                 (revert-buffer))))
+  (advice-add it :after (lambda (&rest _) (revert-buffer))))
 
 ;; C-a is nicer in dired if it moves back to start of files
 (defun dired-back-to-start-of-files ()
