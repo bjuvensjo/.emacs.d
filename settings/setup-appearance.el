@@ -36,7 +36,8 @@
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme 'night-owl t))
 
-(use-default-theme)
+;; (use-default-theme)
+(use-night-owl-theme)
 (set-font-size)
 
 ;; Don't defer screen updates when performing operations
