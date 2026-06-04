@@ -29,16 +29,15 @@
 (defun use-default-theme ()
   (interactive)
   (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'default-black t)
-  (set-font-size))
+  (load-theme 'default-black t))
 
 (defun use-night-owl-theme ()
   (interactive)
   (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'night-owl t)
-  (set-font-size))
+  (load-theme 'night-owl t))
 
 (use-default-theme)
+(set-font-size)
 
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)
