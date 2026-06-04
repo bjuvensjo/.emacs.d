@@ -17,27 +17,6 @@
           (message "File '%s' successfully renamed to '%s'"
                    name (file-name-nondirectory new-name)))))))
 
-(defun delete-current-buffer-file ()
-  "Removes file connected to current buffer and kills buffer."
-  (interactive)
-  (let ((filename (buffer-file-name))
-        (buffer (current-buffer))
-        (name (buffer-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (ido-kill-buffer)
-      (when (yes-or-no-p "Are you sure you want to remove this file? ")
-        (delete-file filename)
-        (kill-buffer buffer)
-        (message "File '%s' successfully removed" filename)))))
-
-(defun copy-current-file-path ()
-  "Add current file path to kill ring. Limits the filename to project root if possible."
-  (interactive)
-  (let ((filename (buffer-file-name)))
-    (kill-new (if eproject-mode
-                  (s-chop-prefix (eproject-root) filename)
-                filename))))
-
 (defun find-or-create-file-at-point ()
   "Guesses what parts of the buffer under point is a file name and opens it."
   (interactive)
@@ -60,11 +39,5 @@
                     (forward-char 1))
                   (point))))
       (buffer-substring start end))))
-
-(defun touch-buffer-file ()
-  (interactive)
-  (insert " ")
-  (backward-delete-char 1)
-  (save-buffer))
 
 (provide 'file-defuns)

@@ -107,9 +107,6 @@
 (keymap-global-set "s-w" #'save-region-or-current-line)
 (keymap-global-set "M-W" (λ (save-region-or-current-line 1)))
 
-;; Make shell more convenient, and suspend-frame less
-(keymap-global-set "C-x M-z" #'suspend-frame)
-
 ;; vim's ci and co commands
 (keymap-global-set "M-I" #'change-inner)
 (keymap-global-set "M-O" #'change-outer)
@@ -147,7 +144,6 @@
 
 ;; Should be able to eval-and-replace anywhere.
 (keymap-global-set "C-c C-e" #'eval-and-replace)
-(keymap-global-set "M-s-e" #'eval-and-replace)
 
 ;; Navigation bindings
 (global-set-key [remap goto-line] #'goto-line-with-feedback)

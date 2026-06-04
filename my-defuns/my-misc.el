@@ -19,11 +19,6 @@
   (dotimes (i (or n 1))
     (upcase-region (point) (progn (forward-char) (point)))))
 
-(defun mbj/reverse-string-region ()
-  "Reverse string in region"
-  (interactive)
-  (replace-region-by (lambda (content) (nreverse content))))
-
 (defun mbj/delete-line ()
   "Deletes current line"
   (interactive)
