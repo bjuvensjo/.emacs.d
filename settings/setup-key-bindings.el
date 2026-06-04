@@ -1,80 +1,81 @@
 ;; I don't need to kill emacs that easily. The mnemonic is C-x REALLY QUIT
-(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
-(global-set-key (kbd "C-x C-c") 'delete-frame)
+(keymap-global-set "C-x r q" #'save-buffers-kill-terminal)
+(keymap-global-set "C-x C-c" #'delete-frame)
 
 ;; Completion that uses many different methods to find options.
-(global-set-key (kbd "C-.") 'hippie-expand-no-case-fold)
-(global-set-key (kbd "C-:") 'hippie-expand-lines)
-(global-set-key (kbd "C-,") 'completion-at-point)
+(keymap-global-set "C-." #'hippie-expand-no-case-fold)
+(keymap-global-set "C-:" #'hippie-expand-lines)
+(keymap-global-set "C-," #'completion-at-point)
 
 ;; Misc functions
 (require 'misc)
-(global-set-key (kbd "M-s-<up>") 'copy-from-above-command)
-(global-set-key (kbd "M-s-<down>") (λ (forward-line 1) (open-line 1) (copy-from-above-command)))
-(global-set-key (kbd "M-s-<right>") (λ (copy-from-above-command 1)))
-(global-set-key (kbd "M-s-<left>") (λ (copy-from-above-command -1) (forward-char -1) (delete-char -1)))
+(keymap-global-set "M-s-<up>" #'copy-from-above-command)
+(keymap-global-set "M-s-<down>" (λ (forward-line 1) (open-line 1) (copy-from-above-command)))
+(keymap-global-set "M-s-<right>" (λ (copy-from-above-command 1)))
+(keymap-global-set "M-s-<left>" (λ (copy-from-above-command -1) (forward-char -1) (delete-char -1)))
 
 ;; Zap to char
-(global-set-key (kbd "M-z") 'zap-up-to-char)
-(global-set-key (kbd "s-z") (lambda (char) (interactive "cZap up to char backwards: ") (zap-up-to-char -1 char)))
-(global-set-key (kbd "M-Z") (lambda (char) (interactive "cZap to char: ") (zap-to-char 1 char)))
-(global-set-key (kbd "s-Z") (lambda (char) (interactive "cZap to char backwards: ") (zap-to-char -1 char)))
+(keymap-global-set "M-z" #'zap-up-to-char)
+(keymap-global-set "s-z" (lambda (char) (interactive "cZap up to char backwards: ") (zap-up-to-char -1 char)))
+(keymap-global-set "M-Z" (lambda (char) (interactive "cZap to char: ") (zap-to-char 1 char)))
+(keymap-global-set "s-Z" (lambda (char) (interactive "cZap to char backwards: ") (zap-to-char -1 char)))
 
 ;; Smart M-x
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(keymap-global-set "M-x" #'smex)
+(keymap-global-set "M-X" #'smex-major-mode-commands)
+(keymap-global-set "C-c C-c M-x" #'execute-extended-command)
 
 ;; Use C-x C-m to do M-x per Steve Yegge's advice
-(global-set-key (kbd "C-x C-m") 'smex)
+(keymap-global-set "C-x C-m" #'smex)
 
 ;; Expand region (increases selected region by semantic units)
-(global-set-key (if is-mac (kbd "C-+") (kbd "C-'")) 'er/expand-region)
+(keymap-global-set (if is-mac "C-+" "C-'") #'er/expand-region)
 
 ;; Mark additional regions matching current region
-(global-set-key (kbd "M-ä") 'mc/mark-all-dwim)
-(global-set-key (kbd "C-å") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-ä") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-Ä") 'mc/mark-more-like-this-extended)
-(global-set-key (kbd "M-å") 'mc/mark-all-in-region)
+(keymap-global-set "M-ä" #'mc/mark-all-dwim)
+(keymap-global-set "C-å" #'mc/mark-previous-like-this)
+(keymap-global-set "C-ä" #'mc/mark-next-like-this)
+(keymap-global-set "C-Ä" #'mc/mark-more-like-this-extended)
+(keymap-global-set "M-å" #'mc/mark-all-in-region)
 
 ;; Set anchor to start rectangular-region-mode
-(global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
+(keymap-global-set "H-SPC" #'set-rectangular-region-anchor)
 
-(global-set-key (kbd "C-x r t") 'mc/edit-lines)
+(keymap-global-set "C-x r t" #'mc/edit-lines)
 
 ;; Quickly jump in document with avy
-(key-chord-define-global "ss" 'avy-goto-char)
-(key-chord-define-global "SS" 'avy-pop-mark)
-(global-set-key (kbd "C-ö") 'avy-goto-char)
-(global-set-key (kbd "C-Ö") 'avy-pop-mark)
+(key-chord-define-global "ss" #'avy-goto-char)
+(key-chord-define-global "SS" #'avy-pop-mark)
+(keymap-global-set "C-ö" #'avy-goto-char)
+(keymap-global-set "C-Ö" #'avy-pop-mark)
 
 ;; Perform general cleanup
-(global-set-key (kbd "C-c n") 'cleanup-buffer)
-(global-set-key (kbd "C-c C-n") 'cleanup-buffer)
-(global-set-key (kbd "C-c C-<return>") 'delete-blank-lines)
+(keymap-global-set "C-c n" #'cleanup-buffer)
+(keymap-global-set "C-c C-n" #'cleanup-buffer)
+(keymap-global-set "C-c C-<return>" #'delete-blank-lines)
 ;; Delete all blank lines
 (key-chord-define-global "DD" (λ (flush-lines "^$" (point-min) (point-max))))
-(key-chord-define-global "ZZ" 'mbj/delete-line)
-(key-chord-define-global "gg" 'beginning-of-buffer)
-(key-chord-define-global "GG" 'end-of-buffer)
+(key-chord-define-global "ZZ" #'mbj/delete-line)
+(key-chord-define-global "gg" #'beginning-of-buffer)
+(key-chord-define-global "GG" #'end-of-buffer)
 
 ;; M-i for back-to-indentation
-(global-set-key (kbd "M-i") 'back-to-indentation)
+(keymap-global-set "M-i" #'back-to-indentation)
 
 ;; Transpose stuff with M-t
-;; (global-unset-key (kbd "M-t")) ;; which used to be transpose-words
-;; (global-set-key (kbd "M-t l") 'transpose-lines)
-;; (global-set-key (kbd "M-t w") 'transpose-words)
-;; (global-set-key (kbd "M-t s") 'transpose-sexps)
-;; (global-set-key (kbd "M-t p") 'transpose-params)
+;; (keymap-global-unset "M-t") ;; which used to be transpose-words
+;; (keymap-global-set "M-t l" #'transpose-lines)
+;; (keymap-global-set "M-t w" #'transpose-words)
+;; (keymap-global-set "M-t s" #'transpose-sexps)
+;; (keymap-global-set "M-t p" #'transpose-params)
 
 ;; Change word separators
-(global-unset-key (kbd "C-x +")) ;; used to be balance-windows
-;; (global-set-key (kbd "C-x -") (λ (replace-region-by 's-dashed-words)))
-(global-set-key (kbd "C-x _") (λ (replace-region-by 's-snake-case)))
-(global-set-key (kbd "C-x c") (λ (replace-region-by 's-lower-camel-case)))
-(global-set-key (kbd "C-x C") (λ (replace-region-by 's-upper-camel-case)))
+(keymap-global-unset "C-x +") ;; used to be balance-windows
+;; (keymap-global-set "C-x -" (λ (replace-region-by #'s-dashed-words)))
+(keymap-global-set "C-x _" (λ (replace-region-by #'s-snake-case)))
+(keymap-global-set "C-x c" (λ (replace-region-by #'s-lower-camel-case)))
+(keymap-global-set "C-x C" (λ (replace-region-by #'s-upper-camel-case)))
+
 (defun my/underscores-to-dots-but-last-line (line)
   (if (string-match "_[^_]*\\'" line)
       (let ((i (match-beginning 0)))
@@ -91,77 +92,73 @@
         (concat result "\n")
       result)))
 
-(global-set-key (kbd "C-x .")
-                (lambda ()
-                  (interactive)
-                  (replace-region-by #'my/underscores-to-dots-but-last-per-line)))
-
+(keymap-global-set "C-x ."
+                   (lambda ()
+                     (interactive)
+                     (replace-region-by #'my/underscores-to-dots-but-last-per-line)))
 
 ;; Killing text
-(global-set-key (kbd "C-w") 'kill-region-or-backward-word)
-(global-set-key (kbd "C-c C-w") 'kill-to-beginning-of-line)
+(keymap-global-set "C-w" #'kill-region-or-backward-word)
+(keymap-global-set "C-c C-w" #'kill-to-beginning-of-line)
 
 ;; Use M-w for copy-line if no active region
-(global-set-key (kbd "M-w") 'save-region-or-current-line)
-(global-set-key (kbd "s-w") 'save-region-or-current-line)
-(global-set-key (kbd "M-W") (λ (save-region-or-current-line 1)))
+(keymap-global-set "M-w" #'save-region-or-current-line)
+(keymap-global-set "s-w" #'save-region-or-current-line)
+(keymap-global-set "M-W" (λ (save-region-or-current-line 1)))
 
 ;; Make shell more convenient, and suspend-frame less
-(global-set-key (kbd "C-x M-z") 'suspend-frame)
+(keymap-global-set "C-x M-z" #'suspend-frame)
 
 ;; vim's ci and co commands
-(global-set-key (kbd "M-I") 'change-inner)
-(global-set-key (kbd "M-O") 'change-outer)
+(keymap-global-set "M-I" #'change-inner)
+(keymap-global-set "M-O" #'change-outer)
 
-(global-set-key (kbd "s-i") 'copy-inner)
-(global-set-key (kbd "s-o") 'copy-outer)
+(keymap-global-set "s-i" #'copy-inner)
+(keymap-global-set "s-o" #'copy-outer)
 
 ;; Create new frame
-(define-key global-map (kbd "C-x C-n") 'make-frame-command)
+(keymap-global-set "C-x C-n" #'make-frame-command)
 
 ;; Jump to a definition in the current file. (This is awesome)
-(global-set-key (kbd "C-x C-i") 'ido-imenu)
+(keymap-global-set "C-x C-i" #'ido-imenu)
 
 ;; File finding
-(global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
-(global-set-key (kbd "C-x f") 'recentf-ido-find-file)
-(global-set-key (kbd "C-x C-p") 'find-or-create-file-at-point)
-(global-set-key (kbd "C-x M-p") 'find-or-create-file-at-point-other-window)
-(global-set-key (kbd "C-c r") 'revert-buffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(keymap-global-set "C-x M-f" #'ido-find-file-other-window)
+(keymap-global-set "C-x f" #'recentf-ido-find-file)
+(keymap-global-set "C-x C-p" #'find-or-create-file-at-point)
+(keymap-global-set "C-x M-p" #'find-or-create-file-at-point-other-window)
+(keymap-global-set "C-c r" #'revert-buffer)
+(keymap-global-set "C-x C-b" #'ibuffer)
 
 ;; toggle two most recent buffers
 (fset 'quick-switch-buffer [?\C-x ?b return])
-(global-set-key (kbd "C-z") 'quick-switch-buffer)
-
-;; Revert without any fuss
-(global-set-key (kbd "M-<escape>") (λ (revert-buffer t t)))
+(keymap-global-set "C-z" #'quick-switch-buffer)
 
 ;; Window switching
-(global-set-key (kbd "C-x -") 'toggle-window-split)
-(global-set-key (kbd "C-x C--") 'rotate-windows)
-(global-set-key (kbd "C-x C-+") 'mbj/zoom-frame)
+(keymap-global-set "C-x -" #'toggle-window-split)
+(keymap-global-set "C-x C--" #'rotate-windows)
+(keymap-global-set "C-x C-+" #'mbj/zoom-frame)
 
-(global-set-key (kbd "C-x 3") 'split-window-right-and-move-there-dammit)
+(keymap-global-set "C-x 3" #'split-window-right-and-move-there-dammit)
 
 ;; Help should search more than just commands
-(global-set-key (kbd "<f1> a") 'apropos)
+(keymap-global-set "<f1> a" #'apropos)
 
 ;; Should be able to eval-and-replace anywhere.
-(global-set-key (kbd "C-c C-e") 'eval-and-replace)
-(global-set-key (kbd "M-s-e") 'eval-and-replace)
+(keymap-global-set "C-c C-e" #'eval-and-replace)
+(keymap-global-set "M-s-e" #'eval-and-replace)
 
 ;; Navigation bindings
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
+(global-set-key [remap goto-line] #'goto-line-with-feedback)
 
-;; jump-char - like f in Vim
-;; (global-set-key (kbd "M-m") 'jump-char-forward)
-;; (global-set-key (kbd "M-M") 'jump-char-backward)
-;; (global-set-key (kbd "s-m") 'jump-char-backward)
+;; jump-char - like f in Vimq
+;; (keymap-global-set "M-m" #'jump-char-forward)
+;; (keymap-global-set "M-M" #'jump-char-backward)
+;; (keymap-global-set "s-m" #'jump-char-backward)
 
 ;; Define some keychords
-;; (key-chord-define-global "fg" 'jump-char-forward)
-;; (key-chord-define-global "df" 'jump-char-backward)
+;; (key-chord-define-global "fg" #'jump-char-forward)
+;; (key-chord-define-global "df" #'jump-char-backward)
 (key-chord-define-global ";;" "\C-e;")
 (key-chord-define-global ",." "{}\C-b")
 (key-chord-define-global ".-" "[]\C-b")
@@ -170,106 +167,106 @@
 (key-chord-define-global "--" " = ")
 (key-chord-define-global "qq" (λ (kill-buffer (buffer-name))))
 
-
 ;; Completion at point
-(global-set-key (kbd "C-<tab>") 'completion-at-point)
+(keymap-global-set "C-<tab>" #'completion-at-point)
 
 ;; Visual regexp
-(define-key global-map (kbd "M-#") 'vr/query-replace)
-(define-key global-map (kbd "M-/") 'vr/replace)
+(keymap-global-set "M-#" #'vr/query-replace)
+(keymap-global-set "M-/" #'vr/replace)
 
 ;; Comment/uncomment block
-(global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
-(global-set-key (kbd "C-c u") 'uncomment-region)
+(keymap-global-set "C-c c" #'comment-or-uncomment-region)
+(keymap-global-set "C-c u" #'uncomment-region)
 
 ;; Eval buffer
-(global-set-key (kbd "C-c C-k") 'eval-buffer)
+(keymap-global-set "C-c C-k" #'eval-buffer)
 
 ;; Create scratch buffer
-(global-set-key (kbd "C-c b") 'mbj/create-file-visiting-scratch-buffer)
-(global-set-key (kbd "C-c B") 'mbj/delete-file-visiting-scratch-buffers)
+(keymap-global-set "C-c b" #'mbj/create-file-visiting-scratch-buffer)
+(keymap-global-set "C-c B" #'mbj/delete-file-visiting-scratch-buffers)
 
 ;; Move windows, even in org-mode
-(global-set-key (kbd "<s-right>") 'windmove-right)
-(global-set-key (kbd "<s-left>") 'windmove-left)
-(global-set-key (kbd "<s-up>") 'windmove-up)
-(global-set-key (kbd "<s-down>") 'windmove-down)
+(keymap-global-set "s-<right>" #'windmove-right)
+(keymap-global-set "s-<left>"  #'windmove-left)
+(keymap-global-set "s-<up>"    #'windmove-up)
+(keymap-global-set "s-<down>"  #'windmove-down)
 
 ;; Resize window
-(global-set-key (kbd "<S-s-down>") 'shrink-window)
-(global-set-key (kbd "<S-s-up>") 'enlarge-window)
-(global-set-key (kbd "<S-s-left>") 'shrink-window-horizontally)
-(global-set-key (kbd "<S-s-right>") 'enlarge-window-horizontally)
+(keymap-global-set "S-s-<down>"  #'shrink-window)
+(keymap-global-set "S-s-<up>"    #'enlarge-window)
+(keymap-global-set "S-s-<left>"  #'shrink-window-horizontally)
+(keymap-global-set "S-s-<right>" #'enlarge-window-horizontally)
 
 ;; Clever newlines
-(global-set-key (kbd "C-o") 'open-line-and-indent)
-(global-set-key (kbd "<C-return>") 'open-line-below)
-(global-set-key (kbd "<C-S-return>") 'open-line-above)
-(global-set-key (kbd "<M-return>") 'new-line-dwim)
+(keymap-global-set "C-o" #'open-line-and-indent)
+(keymap-global-set "C-<return>" #'open-line-below)
+(keymap-global-set "C-S-<return>" #'open-line-above)
+(keymap-global-set "M-<return>" #'new-line-dwim)
 
 ;; Duplicate region
-(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
+(keymap-global-set "C-c d" #'duplicate-current-line-or-region)
 
 ;; Line movement
-(global-set-key (kbd "<C-S-down>") 'move-text-down)
-(global-set-key (kbd "<C-S-up>") 'move-text-up)
+(keymap-global-set "C-S-<down>" #'move-text-down)
+(keymap-global-set "C-S-<up>" #'move-text-up)
 
 ;; Browse the kill ring
-(global-set-key (kbd "C-x C-y") 'browse-kill-ring)
+(keymap-global-set "C-x C-y" #'browse-kill-ring)
 
 ;; Buffer file functions
-(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
+(keymap-global-set "C-x C-r" #'rename-current-buffer-file)
 
 ;; Toggle frame fullscreen
-(global-set-key (kbd "H-f") 'toggle-frame-fullscreen)
+(keymap-global-set "H-f" #'toggle-frame-fullscreen)
 
 ;; Switch themes
-(global-set-key (kbd "C-<f7>") 'use-default-theme)
-(global-set-key (kbd "C-<f9>") 'use-night-owl-theme)
+(keymap-global-set "C-<f7>" #'use-default-theme)
+(keymap-global-set "C-<f9>" #'use-night-owl-theme)
 
 ;; Display and edit occurances of regexp in buffer
-(global-set-key (kbd "C-c o") 'occur)
+(keymap-global-set "C-c o" #'occur)
 
 ;; Find files by name and display results in dired
-(global-set-key (kbd "M-s-f") 'find-name-dired)
+(keymap-global-set "M-s-f" #'find-name-dired)
 
 ;; phi-search
-(global-set-key (kbd "C-s") 'phi-search)
-(global-set-key (kbd "C-r") 'phi-search-backward)
+(keymap-global-set "C-s" #'phi-search)
+(keymap-global-set "C-r" #'phi-search-backward)
 
 ;; Sort and delete duplicate lines in buffer"
-(global-set-key (kbd "<f9>") 'mbj/sort-and-delete-duplicate-lines)
+(keymap-global-set "<f9>" #'mbj/sort-and-delete-duplicate-lines)
 
 ;; Run current file
-(global-set-key (kbd "<f7>") 'mbj/run-current-file)
+(keymap-global-set "<f7>" #'mbj/run-current-file)
 
 ;; Toggle window dedicated
-(global-set-key (kbd "C-c t") 'mbj/toggle-window-dedicated)
+(keymap-global-set "C-c t" #'mbj/toggle-window-dedicated)
 
 ;; Downcase and upcase
-(global-set-key (kbd "H-d") 'mbj/downcase-char-at-point)
-(global-set-key (kbd "H-u") 'mbj/upcase-char-at-point)
+(keymap-global-set "H-d" #'mbj/downcase-char-at-point)
+(keymap-global-set "H-u" #'mbj/upcase-char-at-point)
 
 ;; Copy file path
-(global-set-key (kbd "C-c p") 'mbj/copy-full-path-to-kill-ring)
+(keymap-global-set "C-c p" #'mbj/copy-full-path-to-kill-ring)
 
 ;; Kill other buffers
-(global-set-key (kbd "C-c C-o") 'mbj/kill-other-buffers)
+(keymap-global-set "C-c C-o" #'mbj/kill-other-buffers)
 
 ;; Kill current buffer
-(global-set-key (kbd "H-k") (λ (kill-buffer (buffer-name))))
+(keymap-global-set "H-k" (λ (kill-buffer (buffer-name))))
 
 ;; Open terminal
-(global-set-key (kbd "C-x t") (λ (shell-command "open -a /Applications/kitty.app/Contents/MacOS/kitty .")))
+(keymap-global-set "C-x t"
+                   (λ (shell-command "open -a /Applications/kitty.app/Contents/MacOS/kitty .")))
 
 (add-hook
  'dired-mode-hook
  (lambda ()
-   (define-key dired-mode-map (kbd "ö") 'dired-up-directory)))
+   (define-key dired-mode-map (kbd "ö") #'dired-up-directory)))
 
 (add-hook
  'emacs-lisp-mode-hook
  (lambda ()
-   (define-key emacs-lisp-mode-map (kbd "C-c C-k") 'mbj/ert-t)))
+   (define-key emacs-lisp-mode-map (kbd "C-c C-k") #'mbj/ert-t)))
 
 (provide 'setup-key-bindings)
