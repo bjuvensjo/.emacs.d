@@ -20,12 +20,6 @@
   (when (file-directory-p path)
     (add-to-list 'custom-theme-load-path path)))
 
-;; Set font size
-(defun set-font-size ()
-  (set-face-attribute 'default nil
-                      :height
-                      180))
-
 (defun use-default-theme ()
   (interactive)
   (mapc #'disable-theme custom-enabled-themes)
@@ -38,7 +32,16 @@
 
 ;; (use-default-theme)
 (use-night-owl-theme)
-(set-font-size)
+
+(defun setup-appearance/apply-frame-font (frame)
+  (when (display-graphic-p frame)
+    (set-face-attribute 'default frame :font "Andale Mono" :height 120)))
+
+(add-hook 'after-make-frame-functions #'setup-appearance/apply-frame-font)
+(add-hook 'after-init-hook
+          (lambda ()
+            (when (display-graphic-p)
+              (setup-appearance/apply-frame-font (selected-frame)))))
 
 ;; Don't defer screen updates when performing operations
 ;; (setq redisplay-dont-pause t)

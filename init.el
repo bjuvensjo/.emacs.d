@@ -179,9 +179,6 @@
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
-;; Set font
-(set-frame-font "Andale Mono 12" nil t)
-
 ;; window numbering
 (window-numbering-mode)
 
